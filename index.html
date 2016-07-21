@@ -26,41 +26,66 @@
 <p>RAuth token based authentication system build on top of Java and Redis.</p>
 </blockquote>
 
+<p><img src="http://i.imgur.com/2O7q6sq.png" alt="Alt text" title="RAuth Hardik"></p>
+
 <p>The general concept behind a RAuth token-based authentication system is simple. Allow users to enter their username and password in order to obtain a token which allows them to fetch a specific resource - without using their username and password. Once their token has been obtained, the user can offer the token - which offers access to a specific resource for a time period - to the remote site.</p>
 
 <p>RAuth is a java library which provides token-based authentication system for all type of java projects or can run independently to support your existing system.</p>
 
-<h3>
-<a id="quick-installation" class="anchor" href="#quick-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Installation</h3>
+<h2>
+<a id="prerequisite" class="anchor" href="#prerequisite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisite</h2>
+
+<ul>
+<li>RAuth requires a separate directory containing <code>app.properties</code> file. For linux and unix operating systems it should be <code>/opt/rauth/</code> and for windows it should be <code>C:\rauth</code>. Download property file from here: <a href="https://github.com/thakerhardiks/RAuth/blob/master/rauth.properties">app.properties</a>. I will write detail explaination of it soon.</li>
+<li>Sample SQL : <a href="https://github.com/thakerhardiks/RAuth/blob/master/rauth.db.sql">rauth.db.sql</a>
+</li>
+</ul>
+
+<h2>
+<a id="generating-authentication-tokens" class="anchor" href="#generating-authentication-tokens" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generating Authentication Tokens</h2>
 
 <ul>
 <li>Add RAuth jar into your project.</li>
-<li>RAuth requires a separate directory containing <code>app.properties</code> file. For linux and unix operating systems it should be <code>/opt/rauth/</code> and for windows it should be <code>C:\rauth</code>.</li>
 <li>RAuth provides a facility to create independent database connection pools as well. If you want to use your connection pooling mechanism you need to pass it to DataHelper class.</li>
-<li>To authenticate a user simply call static method, <code>RAuth.authUser("USERNAME", "PASSWORD");</code>. This method will return <code>User</code> object.</li>
+<li>To authenticate a user simply call static method, <code>RAuth.authUser("USERNAME", "PASSWORD");</code>. This method will return <code>User</code> object. Payload is a JWT term represents content/information you want to put inside your token. Read more about <a href="http://jwt.io">JWT</a> here.</li>
 </ul>
 
-<pre><code>User u = RAuth.authUser("username", "password");                                
+<pre><code>User u = RAuth.authUser("username", "password");
 if(u.getUserStatus().equals(UserStatus.ACTIVATE)) {                         
-    String jwt = RAuth.issueJwt(Audience, Payload);         
+    /* 
+     * Add Your ACL Code Here ! RAuth future release will have it.
+     */
+    String rtoken = RAuth.issueJwt(Audience, Payload);          
 }
 </code></pre>
 
 <ul>
 <li>Store this token in your client and send it with your request to the server.</li>
+</ul>
+
+<h2>
+<a id="authenticating-tokens" class="anchor" href="#authenticating-tokens" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authenticating Tokens</h2>
+
+<ul>
 <li>The method <code>RAuth.authJwt(Audience, jwt)</code> returns payload from the token. Extract and verify token from its payload.
 That's it. Isn't it really simple?</li>
 </ul>
 
-<h3>
-<a id="authors-hardik-thaker" class="anchor" href="#authors-hardik-thaker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors Hardik Thaker</h3>
+<h2>
+<a id="whats-next" class="anchor" href="#whats-next" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's Next?</h2>
 
-<p>Hardik Thaker (<a href="https://github.com/thakerhardiks" class="user-mention">@thakerhardiks</a>) is working at Radix Analytics having 2+ years of experience as Full Stack Developer. Knowledge of Web programming (Java, JSP, Servlets, PHP, HTML5, CSS, jQuery/JavaScript), DB (MySQL, IBM DB2, Oracle, Redis, Voltdb, Hive), Mobile/Tablet Applications Programming (Android). Working in Big Data Industry with Apache Hadoop ecosystem and real time big data processing with Apache Storm.</p>
+<ul>
+<li>Good set of examples explaining single sign on feature, Cross devices authentication.</li>
+<li>Implementing ORM to make it database independent</li>
+<li>Detailed guide of system with <a href="http://redis.io/topics/lru-cache">Redis LRU Cache</a> example.</li>
+<li>LDAP Integration.</li>
+</ul>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Let's make a scalable authentication system together!</p>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<ul>
+<li>Hardik Thaker.</li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/thakerhardiks/RAuth">Rauth</a> is maintained by <a href="https://github.com/thakerhardiks">thakerhardiks</a>.</span>
