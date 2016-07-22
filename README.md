@@ -9,7 +9,8 @@ RAuth is a java library which provides token-based authentication system for all
 
 ## Prerequisite
 * RAuth requires a separate directory containing `app.properties` file. For linux and unix operating systems it should be `/opt/rauth/` and for windows it should be `C:\rauth`. Download property file from here: [app.properties](https://github.com/thakerhardiks/RAuth/blob/master/rauth.properties). I will write detail explaination of it soon.
-* Sample SQL : [rauth.db.sql](https://github.com/thakerhardiks/RAuth/blob/master/rauth.db.sql)
+* Running instance of Redis. Follow [this link](http://redis.io/topics/quickstart) to know how to install redis on your server/machine. (Please remove REDIS_AUTH from property file if you are not using redis authentication)
+* Running instance of your RDBMS. Sample SQL : [rauth.db.sql](https://github.com/thakerhardiks/RAuth/blob/master/rauth.db.sql)
 
 ## Generating Authentication Tokens
 
