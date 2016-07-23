@@ -38,7 +38,11 @@ That's it. Isn't it really simple?
 * Detailed guide of system with [Redis LRU Cache](http://redis.io/topics/lru-cache) example.
 * LDAP Integration.
 
-Let's make a scalable authentication system together!
+
+Thank you
+---
+Thanks for checking this out. If you have any questions, I'll be on [Twitter](http://www.twitter.com/Hardik_Thaker).
+If you're using this, let me know! I'd love to see it. Let's make a simple, secure & scalable authentication system together!
 
 - Hardik Thaker.
 
